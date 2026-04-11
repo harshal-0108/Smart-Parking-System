@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parking Slots</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">🅿️ Parking Slots Dashboard</h2>
+
+    <div class="card shadow p-3">
+
+        <table class="table table-hover table-bordered text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Slot ID</th>
+                    <th>Slot Number</th>
+                    <th>Status</th>
+                    <th>Vehicle ID</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="s : ${slots}">
+                    <td th:text="${s.slotId}"></td>
+                    <td th:text="${s.slotNumber}"></td>
+
+                    <!-- Status Badge -->
+                    <td>
+                        <span th:if="${s.status == 'Available'}" class="badge bg-success px-3 py-2">Available</span>
+                        <span th:if="${s.status == 'Occupied'}" class="badge bg-danger px-3 py-2">Occupied</span>
+                    </td>
+
+                    <!-- Vehicle ID with condition -->
+                    <td>
+                        <span th:if="${s.vehicleId != null}" th:text="${s.vehicleId}"></span>
+                        <span th:if="${s.vehicleId == null}" class="text-muted">--</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">⬅ Back to Dashboard</a>
+    </div>
+
+</div>
+
+</body>
+</html>
